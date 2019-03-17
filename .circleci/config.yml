@@ -96,5 +96,5 @@ workflows:
           compiler: gcc-7.1
       - gitbook/test_book
       - gitbook/build_book:
-        requires:
-          - gitbook/test_book
+          requires:
+            - gitbook/test_book
