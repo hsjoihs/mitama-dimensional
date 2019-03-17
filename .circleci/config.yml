@@ -1,75 +1,94 @@
 version: 2.1
-executors:
-  default:
-    docker:
-      - image: buildpack-deps:bionic-curl
-  test-env:
-    parameters:
-      compiler:
-        description: "compiler-version"
-        default: "clang-7.0.0"
-        type: string
-    docker:
-      - image: enumack/mitama-env:<< parameters.compiler >>
 
-jobs:
-  wandbox-test:
-    description: Testing the library using wandbox
-    parameters:
-      compiler:
-        description: "compiler-version"
-        default: "clang-head"
-        type: string
-    executor: default
-    steps:
-      - checkout
-      - run: curl -sLJO https://github.com/LoliGothick/cbt/releases/download/v0.5.2/cbt_linux_amd64.tar
-      - run: tar -vzxf ./cbt_linux_amd64.tar
-      - run: chmod +x ./cbt
-      - run: ./cbt wandbox cpp src/overview.cpp --compiler=<< parameters.compiler >> --std=c++17 --boost=1.65.0 --sprout --warning --pedantic=errors
-      - store_artifacts:
-          path: /results/permlink
-          destination: raw-test-output
-      - store_artifacts:
-          path: /results
-  full-test:
-    description: Testing the library using Catch2
-    parameters:
-      compiler:
-        description: "compiler-version"
-        default: "clang-7.0.0"
-        type: string
-    executor:
-      name: test-env
-      compiler: << parameters.compiler >>
-    steps:
-      - checkout
-      - run: apt upgrade -y && apt update -y && apt install -y git
-      - run: git submodule update --init --recursive
-      - run: mkdir build && cd build && cmake .. &&  make && ./tests
+orbs:
+  catch2: # Library Integration
+    jobs:
+      build_and_test: # Test Config
+        parameters:
+          compiler:
+            description: compiler-version
+            type: string
+            default: clang-7.0.1
+        executor:
+            name: test_executor
+            compiler: <<parameters.compiler>>
+        steps:
+          - test_command
+    commands: # Inline Test Commands Snip
+      test_command:
+        steps:
+          - checkout
+          - run: apt upgrade -y && apt update -y && apt install -y git
+          - run: git submodule update --init --recursive
+          - run: mkdir build && cd build && cmake .. &&  make && ./tests
+    executors: # Executors for Library Integration
+      test_executor:
+        parameters:
+          compiler:
+            type: string
+        docker:
+          - image: enumack/mitama-env:<<parameters.compiler>>
+
+  gitbook: # Document Integration
+    jobs:
+      test_book: # Sample Code Integration
+        executor: test_executor
+        steps:
+          - checkout
+          - run: |
+              find gitbook -type f -name \*.md | xargs awk -v i='0' '/```cpp$/,/```$/ { if($0 !~ "```.*") { print "/*" NR "*/" $0 >> FILENAME "-" i ".cpp" } else if ($0 ~ "```cpp") { i++ } }'
+              find gitbook -type f -name \*.cpp | xargs -I{} $CXX -I./include/ -I./result/include/ {} -std=c++17
+
+      build_book: # Document Build
+        executor: gitbook
+        steps:
+          - checkout
+          - run: |
+              cd gitbook
+              gitbook install
+              gitbook build . docs
+          - persist_to_workspace:
+              root: /gitbook
+              paths:
+                - docs
+    executors: # Inline Executors for Document Integration
+      gitbook:
+        docker:
+          - image: enumack/mitama-env:gitbook
+      test_executor:
+        docker:
+          - image: enumack/mitama-env:clang-7.0.1
 
 workflows:
-  build:
+  build-test:
     jobs:
-      # - wandbox-test:
-      #     compiler: clang-head
-      # - wandbox-test:
-      #     compiler: gcc-head
-      - full-test:
+      - catch2/build_and_test:
           compiler: clang-7.0.1
-      - full-test:
+      - catch2/build_and_test:
           compiler: clang-7.0.0
-      - full-test:
+      - catch2/build_and_test:
           compiler: clang-6.0.1
-      - full-test:
+      - catch2/build_and_test:
           compiler: clang-6.0.0
-      - full-test:
+      - catch2/build_and_test:
           compiler: gcc-8.2
-      - full-test:
+      - catch2/build_and_test:
           compiler: gcc-8.1
-      - full-test:
+      - catch2/build_and_test:
           compiler: gcc-7.3
-      - full-test:
+      - catch2/build_and_test:
           compiler: gcc-7.2
-      - full-test:
-          compiler: gcc-7.1 
+      - catch2/build_and_test:
+          compiler: gcc-7.1
+      # - gitbook/test_book:
+      #   filters:
+      #     branch:
+      #       only:
+      #         - master
+      # - gitbook/build_book:
+      #   requires:
+      #     - gitbook/test_book
+      #   filters:
+      #     branch:
+      #       only:
+      #         - master
