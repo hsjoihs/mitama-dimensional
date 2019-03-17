@@ -49,15 +49,6 @@ Dimensinal quantifiers are defined as constexpr variables.
 
 **dimensinal quantifiers example**
 
-```cpp
-namespace mitama::si {
-    inline constexpr meter_t meters{};
-    inline constexpr kilogram_t kilograms{};
-    inline constexpr second_t seconds{};
-    // ...
-}
-```
-
 ### pipe operator overload for dimensinal quantifiers
 
 Pipe operators are provided to attach units to values.
@@ -94,8 +85,8 @@ int main() {
     using mitama::quantity_t;
 
     quantity_t a = 3 | si::kilograms;
-    quantity_t<gram_t, int> b = a; // 3000 [g]
-    // quantity_t<meter_t, int> b = a; // compile error!
+    quantity_t<si::gram_t, int> b = a; // 3000 [g]
+    // quantity_t<si::meter_t, int> b = a; // compile error!
 }
 ```
 
@@ -110,6 +101,7 @@ arithmetic operators listed bellow are defined:
 
 ```cpp
 #include <dimensional/quantity.hpp>
+#include <dimensional/arithmetic.hpp>
 #include <dimensional/si/all.hpp>
 
 int main() {
