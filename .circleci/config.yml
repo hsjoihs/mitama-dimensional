@@ -38,7 +38,7 @@ orbs:
           - run: |
               apt upgrade -y && apt update -y && apt install -y git
               git submodule update --init --recursive
-              find gitbook -type f -name \*.md | xargs awk -v i='0' '/```cpp$/,/```$/ { if($0 !~ "```.*") { print "/*" NR "*/" $0 >> FILENAME "-" i ".cpp" } else if ($0 ~ "```cpp") { i++ } }'
+              find gitbook -type f -name \*.md | xargs awk -v i='0' '/\/\/ begin example$/,/\/\/ end example$/ { if($0 !~ "\/\/ .* example$") { print $0 >> FILENAME "-" i ".cpp" } else if ($0 ~ "\/\/ begin example$") { i++ } }'
               find gitbook -type f -name \*.cpp | xargs -I{} $CXX -I./include/ -I./result/include/ {} -std=c++17
 
       build_book: # Document Build
@@ -46,7 +46,7 @@ orbs:
         steps:
           - add_ssh_keys:
               fingerprints:
-                - "a0:5f:af:26:b5:ed:98:b0:21:0d:cb:4b:40:64:b1:80"
+                - "dc:68:d6:9a:fc:29:a4:12:35:89:3e:ca:ac:9f:02:d6"
           - checkout
           - run: |
               cd gitbook
@@ -55,16 +55,18 @@ orbs:
           - store_artifacts:
               path: /gitbook/_book/
               destination: "docs-${CIRCLE_BUILD_NUM}"
+          - run: apt upgrade -y && apt update -y && apt install -y git
           - run: |
-              git config --global user.name  $USER
-              git config --global user.email $EMAIL
-              cd _book/
+              git config --global user.name LoliGothick
+              git config --global user.email loligothick@gmail.com
+              pwd
+              cd gitbook/_book/
               git init
               git commit --allow-empty -m '[ci skip] update docs'
               git checkout -b gh-pages
               git add .
               git commit -am '[ci skip] update docs'
-              git push --force git@github.com:$USER/mitama-dimensional.git gh-pages
+              git push --force https://${GITHUB_PERSONAL_TOKEN}@github.com/LoliGothick/mitama-dimensional gh-pages
     executors: # Inline Executors for Document Integration
       gitbook:
         docker:
