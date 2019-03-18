@@ -28,6 +28,7 @@ If the second template argument is omitted, it will be of type `double`.
 **example**
 
 ```cpp
+// begin example
 #include <dimensional/quantity.hpp>
 #include <dimensional/si/all.hpp>
 
@@ -38,6 +39,7 @@ int main() {
     quantity_t<si::meter_t, int> len1 = 1; // 1 [m]
     quantity_t<si::meter_t, double> len2 = 1.45; // 1.45 [m]
 }
+// end example
 ```
 
 
@@ -58,6 +60,7 @@ It is allowed to convert values into quantities by piping values to dimensinal q
 **example**
 
 ```cpp
+// begin example
 #include <dimensional/quantity.hpp>
 #include <dimensional/si/all.hpp>
 
@@ -69,6 +72,7 @@ int main() {
     quantity_t mass = 3 | si::kilograms; // 1 [kg]
     quantity_t time = 1.66 | si::seconds; // 1.66 [s]
 }
+// end example
 ```
 
 ### conversions
@@ -77,6 +81,7 @@ Conversion between different units is perform automatically.
 Conversion between units with different dimensions will result in compilation errors.
 
 ```cpp
+// begin example
 #include <dimensional/quantity.hpp>
 #include <dimensional/si/all.hpp>
 
@@ -88,6 +93,7 @@ int main() {
     quantity_t<si::gram_t, int> b = a; // 3000 [g]
     // quantity_t<si::meter_t, int> b = a; // compile error!
 }
+// end example
 ```
 
 ### arithmetic operators
@@ -100,6 +106,7 @@ arithmetic operators listed bellow are defined:
 
 
 ```cpp
+// begin example
 #include <dimensional/quantity.hpp>
 #include <dimensional/arithmetic.hpp>
 #include <dimensional/si/all.hpp>
@@ -118,4 +125,5 @@ int main() {
     2 * b; // 8 [kg]
     b / 2; // 1 [kg]
 }
+// end example
 ```
