@@ -44,18 +44,18 @@ int main() {
 
 
 
-### dimensinal quantifiers
+### dimensional quantifiers
 -----
 
-Dimensinal quantifiers are defined as constexpr variables.
+Dimensional quantifiers are defined as constexpr variables.
 
-**dimensinal quantifiers example**
+**dimensional quantifiers example**
 
-### pipe operator overload for dimensinal quantifiers
+### pipe operator overload for dimensional quantifiers
 
 Pipe operators are provided to attach units to values.
 
-It is allowed to convert values into quantities by piping values to dimensinal quantifiers.
+It is allowed to convert values into quantities by piping values to dimensional quantifiers.
 
 **example**
 
