@@ -56,11 +56,11 @@ int main() {
     using mitama::quantity_t;
 
     // Template argument deduction for class templates
-    quantity_t density = 3 | si::kilograms / meter<3>; // 3 [kg / m^3]
+    quantity_t density = 3 | si::kilograms / si::meter<3>; // 3 [kg / m^3]
 
-    quantity_t speed = 1.2 | meters / si::seconds; // 1.2 [m / s]
+    quantity_t speed = 1.2 | si::meters / si::seconds; // 1.2 [m / s]
 
-    quantity_t accel = 4 | si::meter * second<-2>; // 4 [s / m^2]
+    quantity_t accel = 4 | si::meters * si::second<-2>; // 4 [s / m^2]
 }
 // end example
 ```
