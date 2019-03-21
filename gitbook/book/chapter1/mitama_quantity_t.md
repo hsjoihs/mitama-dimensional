@@ -1,8 +1,8 @@
 ## mitama::quantity_t
-
+------------
 Defined in header [`<dimensional/quantity.hpp>`]()
 
-`Quantity_t <Units, T>` is a class that represents a quantity, the value is represented by `T`, and the unit is` Units`.
+`quantity_t<Units, T>` is a class that represents a dimensional quantity of `Units` that has value type of `T`.
 
 **definition**
 
@@ -42,39 +42,6 @@ int main() {
 // end example
 ```
 
-
-
-### dimensional quantifiers
------
-
-Dimensional quantifiers are defined as constexpr variables.
-
-**dimensional quantifiers example**
-
-### pipe operator overload for dimensional quantifiers
-
-Pipe operators are provided to attach units to values.
-
-It is allowed to convert values into quantities by piping values to dimensional quantifiers.
-
-**example**
-
-```cpp
-// begin example
-#include <dimensional/quantity.hpp>
-#include <dimensional/si/all.hpp>
-
-int main() {
-    namespace si = mitama::si;
-    using mitama::quantity_t;
-
-    // Template argument deduction for class templates
-    quantity_t mass = 3 | si::kilograms; // 1 [kg]
-    quantity_t time = 1.66 | si::seconds; // 1.66 [s]
-}
-// end example
-```
-
 ### conversions
 
 Conversion between different units is perform automatically.
@@ -98,12 +65,26 @@ int main() {
 
 ### arithmetic operators
 
-arithmetic operators listed bellow are defined:
+Defined in header [`<dimensional/arithmetic.hpp>`]()
 
-- Additions and subtractions between quantity_t with the same dimensions, and
-- Multiplication and division between all quantity_t, and
-- multiplication and division of all quantity_t and non-quantity values(for coefficient).
+Let
+- `q1` is a value with type of `quantity_t<D1, T1>`,
+- `q2` is a value iwth type of `quantity_t<D2, T2>`, and
+- `v` is a value with type of `T3`.
 
+And arithmetic operators listed bellow are defined:
+
+| expression |                                             condition                                              |
+| :--------: | :------------------------------------------------------------------------------------------------: |
+| `q1 + q2`  | `D1` and `D2` has same dimension and `std::declval<T1>() + std::declval<T2>()` is valid expression |
+| `q1 - q2`  | `D1` and `D2` has same dimension and `std::declval<T1>() - std::declval<T2>()` is valid expression |
+| `q1 * q2`  |                   `std::declval<T1>() * std::declval<T2>()` is valid expression                    |
+| `q1 / q2`  |                   `std::declval<T1>() / std::declval<T2>()` is valid expression                    |
+|  `q1 * v`  |                   `std::declval<T1>() * std::declval<T3>()` is valid expression                    |
+|  `v * q1`  |                   `std::declval<T3>() * std::declval<T1>()` is valid expression                    |
+|  `q1 / v`  |                   `std::declval<T1>() / std::declval<T3>()` is valid expression                    |
+
+Otherwise, arithmetic operators do not perticipate in overload resolution.
 
 ```cpp
 // begin example
@@ -115,15 +96,19 @@ int main() {
     namespace si = mitama::si;
     using mitama::quantity_t;
 
-    quantity_t a = 4 | si::kilograms;
-    quantity_t b = 2 | si::kilograms;
+    quantity_t a = 4 | si::meters;
+    quantity_t b = 2 | si::meters;
 
-    a + b; // 6 [kg]
-    a - b; // 2 [kg]
-    a * b; // 8 [kg]
-    a / b; // 2 [kg]
-    2 * b; // 8 [kg]
-    b / 2; // 1 [kg]
+    a + b; // 6 [m]
+    a - b; // 2 [m]
+    a * b; // 8 [m^2]
+    a / b; // 2 [dimensionless]
+    2 * b; // 8 [m]
+    b * 2; // 8 [m]
+    b / 2; // 1 [m]
 }
 // end example
 ```
+
+### Quotient
+
