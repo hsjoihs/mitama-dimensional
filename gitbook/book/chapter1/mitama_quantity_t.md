@@ -1,5 +1,5 @@
 ## mitama::quantity_t
-------------
+
 Defined in header [`<dimensional/quantity.hpp>`]()
 
 `quantity_t<Units, T>` is a class that represents a dimensional quantity of `Units` that has value type of `T`.
@@ -43,6 +43,7 @@ int main() {
 ```
 
 ### conversions
+----------------------------
 
 Conversion between different units is perform automatically.
 Conversion between units with different dimensions will result in compilation errors.
@@ -64,6 +65,7 @@ int main() {
 ```
 
 ### arithmetic operators
+----------------------------
 
 Defined in header [`<dimensional/arithmetic.hpp>`]()
 
@@ -111,4 +113,5 @@ int main() {
 ```
 
 ### Quotient
+----------------------------
 

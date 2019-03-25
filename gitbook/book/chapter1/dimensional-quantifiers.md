@@ -1,6 +1,5 @@
 
 ## dimensional quantifiers
------
 
 Dimensional quantifiers are defined as constexpr variables (templates) of dimensional_t (see [3.2 dimensional_t]() in detail).
 
@@ -16,6 +15,7 @@ inline constexpr powered_t<meter_t, N> meter;
 If you do not specify the exponent (=1), use the plural dimension quantifiers, and if you specify it, use the singular dimension quantifiers with non-type template parameter.
 
 ### pipe operator overload
+----------------------------
 
 Pipe operators are provided to attach units to values.
 
@@ -43,6 +43,7 @@ int main() {
 ```
 
 ### multiplication and division operators
+----------------------------
 
 Multiplication and division operators for dimensional quantifiers are provided to make derived units.
 
