@@ -46,7 +46,15 @@ class units_t<BaseDimension, Exponent, Scale>
 ### Tracking units and conversion factors in types
 ----------------------------
 
-$$(a:A_\Lambda) \pm (b:B_\Lambda)$$
+Let value $$a$$ has derived unit $$D_\Lambda$$ as:
+
+$$
+a: D_\Lambda
+$$
+
+then
+
+**$$(a:A_\Lambda) \pm (b:B_\Lambda)$$**
 
 $$
 = a \pm b:{\{ ( e, min(s_a, s_b) )_{\lambda} \ | \ (e_a, s_a)_{\lambda} \in A_\Lambda, (e_b, s_b)_{\lambda} \in B_\Lambda \}}_{\lambda \in \Lambda}
@@ -65,7 +73,7 @@ quantity_t<metre_t> b = 1;
 a + b; // 1001 mm
 ```
 
-$$(a:A_{\Gamma}) \times (b:B_{\Lambda})$$
+**$$(a:A_{\Gamma}) \times (b:B_{\Lambda})$$**
 
 $$
 = a \times b: {\{ ( e_a + e_b, min(s_a, s_b) )_{\sigma} \ | \ (e_a, s_a)_{\sigma} \in A_\sigma, (e_b, s_b)_{\sigma} \in B_\sigma \}}_{\sigma \in \Gamma \cap \Lambda  }
@@ -77,7 +85,9 @@ $$
 \cup {\{ (e_b, s_b)_{\lambda} \ | \ (e_b, s_b)_{\lambda} \in B_\lambda\}}_{\lambda \in \Lambda \backslash \Gamma  }
 $$
 
-**Unit multilication example**
+It is automatically converted to a high precision factor, too.
+
+**Unit multiplication example**
 
 $$
 [m^2 \cdot s^{-1}] \times [kg \cdot s^{-1}]
@@ -99,8 +109,8 @@ $$
 mul(U_1, U_2) = (e_1 + e_2, min(s_1, s_2))_\lambda
 $$
 
-1. Pick a unit_t A from left.
-2. If there is a right for B with the same dimensions as A, push If there is a right for B with the same dimensions as A, push $$mul(A, B)$$ result and pop A and B, else push A to result and pop A.
+1. Pick a `unit_t` **A** from left.
+2. If there is a right for **B** with the same dimensions as **A**, push If there is a right for **B** with the same dimensions as **A**, push $$mul(A, B)$$ result and pop **A** and **B**, else push **A** to result and pop **A**.
 3. If left does not empty, return to 1, else push the rest of right to result
 
 start with empty result.
@@ -150,7 +160,7 @@ $$
 
 -- end example
 
-$$(a:A_{\Gamma}) \div (b:B_{\Lambda})$$
+**$$(a:A_{\Gamma}) \div (b:B_{\Lambda})$$**
 
 define
 
