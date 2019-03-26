@@ -87,10 +87,10 @@ $$
 
 It is automatically converted to a high precision factor, too.
 
-**Unit multiplication example**
+**Unit multiplication induce example**
 
 $$
-[m^2 \cdot s^{-1}] \times [kg \cdot s^{-1}]
+[m^2 \cdot s^{-1}] \times [kg \cdot s^{-1}] = [m^2 \cdot s^{-2} \cdot kg]
 $$
 
 Consider simple dual loop:
@@ -172,3 +172,11 @@ and
 
 $$
 (a:A_{\Gamma}) \div (b:B_{\Lambda}) := (a:A_{\Gamma}) \times (b^{-1}:{B_{\Lambda}}^{-1})$$
+
+### Meta programming
+
+The unit multiplication example was a very simple logic.
+
+If you want to see the complete implementation of them, take a look at the headers.
+You can see emulation of dual loops with recursive instantiation.
+
