@@ -1,4 +1,5 @@
-## mitama::quantity_t
+mitama::quantity_t
+------------------
 
 Defined in header [`<dimensional/quantity.hpp>`]()
 
@@ -42,7 +43,7 @@ int main() {
 // end example
 ```
 
-### conversions
+## conversions
 ----------------------------
 
 Conversion between different units is perform automatically.
@@ -64,7 +65,7 @@ int main() {
 // end example
 ```
 
-### arithmetic operators
+## arithmetic operators
 ----------------------------
 
 Defined in header [`<dimensional/arithmetic.hpp>`]()
@@ -112,6 +113,6 @@ int main() {
 // end example
 ```
 
-### Quotient
+## Quotient
 ----------------------------
 

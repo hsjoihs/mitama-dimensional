@@ -1,6 +1,8 @@
-## Library defined units and format
+Library defined units and format
+--------------------------------
 
-### Format IO
+
+## Format IO
 
 `std::ostream` adaptor `operator <<` is defined in header [`<dimensional/io.hpp>`]().
 
@@ -23,7 +25,7 @@ int main() {
 // end example
 ```
 
-### SI basic units
+## SI basic units
 
 | type name <br> quantifier name | Unit symbol |  Quantity measured  |
 | :----------------------------: | :---------: | :-----------------: |
@@ -35,7 +37,7 @@ int main() {
 |         mole_t<br>mole         |     mol     | amount of substance |
 |      candela_t<br>candela      |     cd      | luminous intensity  |
 
-### Non SI units
+## Non SI units
 
 | type name <br> quantifier name | Unit symbol | Equivalents in termsof SI units |
 | :----------------------------: | :---------: | :-----------------------------: |
@@ -48,7 +50,7 @@ int main() {
 |         day_t<br>days          |      h      |    $$1 d = 24 h = 86400 s$$     |
 
 
-### Named units derived from SI base units
+## Named units derived from SI base units
 
 |   type name <br> quantifier Name   |   Symbol   |                    Quantity                     |                     Equivalents                      |           SI base unit Equivalents           |
 | :--------------------------------: | :--------: | :---------------------------------------------: | :--------------------------------------------------: | :------------------------------------------: |
@@ -75,7 +77,7 @@ int main() {
 |        sievert_t<br>sievert        |     Sv     |  equivalent dose <br> (of ionizing radiation)   |                       $$J/kg$$                       |             $$m^2 \cdot s^{-2}$$             |
 |          katal_t<br>katal          |    kat     |               catalytic activity                |                      $$mol/s$$                       |             $$s^{-1} \cdot mol$$             |
 
-### Kinematic SI derived units
+## Kinematic SI derived units
 
 |         type name <br> quantifier Name         |   Symbol    | Expression in termsof SI base units |
 | :--------------------------------------------: | :---------: | :---------------------------------: |
@@ -90,7 +92,7 @@ int main() {
 |      frequency_drift_t<br>frequency_drift      |  $$Hz/s$$   |             $$s^{-2}$$              |
 |      volumetric_flow_t<br>volumetric_flow      |  $$m^3/s$$  |        $$m^3 \cdot s^{-1}$$         |
 
-### Molar SI derived units
+## Molar SI derived units
 
 |         type name <br> quantifier Name         |        Symbol         |           Expression in terms of SI base units            |
 | :--------------------------------------------: | :-------------------: | :-------------------------------------------------------: |
@@ -104,7 +106,7 @@ int main() {
 |           molar_mass_t<br>molar_mass           |      $$kg/mol$$       |                   $$kg \cdot mol^{-1}$$                   |
 | catalytic_efficiency_t<br>catalytic_efficiency | $$m^3/(mol \cdot s)$$ |            $$m^3 \cdot s^{-1} \cdot mol^{-1}$$            |
 
-### Electromagnetic SI derived units
+## Electromagnetic SI derived units
 
 |                type name <br> quantifier Name                |       Symbol        |     Expression in terms of SI base units     |
 | :----------------------------------------------------------: | :-----------------: | :------------------------------------------: |
@@ -129,7 +131,7 @@ int main() {
 |         magnetomotive_force_t<br>magnetomotive_force         |         ---         |                    $$A$$                     |
 |     magnetic_susceptibility_t<br>magnetic_susceptibility     |       $$m/H$$       | $$m^{-1} \cdot kg^{-1} \cdot s^2 \cdot A^2$$ |
 
-### Photometric SI derived units
+## Photometric SI derived units
 
 |     type name <br> quantifier Name     |     Symbol     |         Expression in terms of SI base units         |
 | :------------------------------------: | :------------: | :--------------------------------------------------: |
@@ -139,7 +141,7 @@ int main() {
 | luminous_efficacy_t<br>luminous_energy |    $$lm/W$$    | $$m^{-2} \cdot kg^{-1} \cdot s^3 \cdot cd \cdot sr$$ |
 
 
-### Thermodynamic SI derived units
+## Thermodynamic SI derived units
 
 |                  type name <br> quantifier Name                  |       Symbol       |    Expression in terms of SI base units    |
 | :--------------------------------------------------------------: | :----------------: | :----------------------------------------: |

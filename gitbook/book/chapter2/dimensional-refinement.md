@@ -1,8 +1,10 @@
-## Dimensional refinement
+Dimensional refinement
+----------------------
+
 
 defined in header [`<dimensional/refinement.hpp>`]().
 
-### Refinement type
+## Refinement type
 
 A function that can be guaranteed at compile time to have dimensions in accordance with the purpose while inferring units of quantity type.
 
@@ -30,7 +32,7 @@ The following example does not pass compilation. This is because m is the dimens
 quantity_t a3 = refined<area_r> |= (2|millimeters); // error!
 ```
 
-### Partial refinement type
+## Partial refinement type
 
 The following is a compilation error if the quantity `(2 | meters) * (2 | meters) * (2 | kilograms) / (2 | second <2>)` does not partially have the dimension of mass $$M$$.
 The compilation passes because it actually has.

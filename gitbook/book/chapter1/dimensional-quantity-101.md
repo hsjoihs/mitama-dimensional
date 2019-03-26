@@ -1,6 +1,8 @@
-## Dimensional Quantity 101
+Dimensional Quantity 101
+------------------------
 
-### Unit systems
+## Unit systems
+
 ----------------------------
 
 There are three basic unit systems in use today:
@@ -12,7 +14,8 @@ There are three basic unit systems in use today:
 This library only supports SI units by library default.
 
 
-### Base units and dimensions
+## Base units and dimensions
+
 ----------------------------
 
 Base units have the important property that all other units derive from them.
@@ -26,7 +29,8 @@ In the SI system, there are seven such base units and corresponding physical qua
 - candela (cd) for luminous intensity, and
 - mole (mol) for the amount of substance.
 
-### Mathematical Notation
+## Mathematical Notation
+
 ----------------------------
 
 We need some suitable mathematical notation to calculate with dimensions like length, mass, time, and so forth.
@@ -48,7 +52,8 @@ Also, $$m /s \times s$$ derives $$m$$.
 
 
 
-### Dimensions of common physical quantities
+## Dimensions of common physical quantities
+
 ----------------------------
 
 Many derived quantities are measured in derived units that have their own name. Force is one example: Newton (N) is a derived unit for force, equal to $$kg \cdot m \cdot s^{-2}$$.
@@ -92,7 +97,8 @@ Some common physical quantities and their dimensions are listed next.
 |  kinematic viscosity   |          dynamic viscosity/density           |            $$m^2/s$$             |       [ $$L^2T^{-1}$$ ]       |
 |    surface tension     |                 energy/area                  |        $$J \cdot s^{-2}$$        |        [ $$MT^{-2}$$ ]        |
 
-### Mtric Prefix
+## Mtric Prefix
+
 ----------------------------
 
 A **metrix prefix** is a unit prefix that precedes a basic unit of measure to indicate a multiple or fraction of the unit.

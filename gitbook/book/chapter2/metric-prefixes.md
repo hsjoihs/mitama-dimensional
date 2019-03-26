@@ -1,8 +1,9 @@
-## Metric prefixes
+Metric prefixes
+---------------
 
 defined in header [`<dimensional/prefix.hpp>`]().
 
-### Metric prefix constants for dimensional quantifiers
+# Metric prefix constants for dimensional quantifiers
 
 **definition**
 

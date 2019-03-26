@@ -1,4 +1,5 @@
-## Chapter 2 Syntax and Features
+Chapter 2 Syntax and Features
+-----------------------------
 
 This chapter introduces the basic syntax and features of the library bellow:
 
