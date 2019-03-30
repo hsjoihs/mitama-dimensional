@@ -1,4 +1,4 @@
-Dimensional Quantity 101
+# Dimensional quantity 101
 ------------------------
 
 ## Unit systems

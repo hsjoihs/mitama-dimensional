@@ -1,5 +1,5 @@
 
-dimensional quantifiers
+# Dimensional quantifiers
 -----------------------
 
 Dimensional quantifiers are defined as constexpr variables (templates) of dimensional_t (see [3.2 dimensional_t]() in detail).

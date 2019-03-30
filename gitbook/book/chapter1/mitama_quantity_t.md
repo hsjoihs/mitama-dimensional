@@ -1,4 +1,4 @@
-mitama::quantity_t
+# mitama::quantity_t
 ------------------
 
 Defined in header [`<dimensional/quantity.hpp>`]()

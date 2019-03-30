@@ -1,4 +1,4 @@
-Metric prefixes
+# Metric prefixes
 ---------------
 
 defined in header [`<dimensional/prefix.hpp>`]().
